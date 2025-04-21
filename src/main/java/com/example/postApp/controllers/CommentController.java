@@ -3,10 +3,7 @@ package com.example.postApp.controllers;
 
 import com.example.postApp.entities.Comment;
 import com.example.postApp.services.CommentService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +23,11 @@ public class CommentController {
                                         @RequestParam Optional<Long> postId) {
         return commentService.getAllCommentsWithParam(userId, postId);
 
+    }
+
+    @GetMapping("/{commentId}")
+    public Comment getOneComment(@PathVariable Long commentId){
+        return commentService.getOneCommentById(commentId);
     }
 
 
