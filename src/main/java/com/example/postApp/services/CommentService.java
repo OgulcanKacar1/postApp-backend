@@ -61,4 +61,8 @@ public class CommentService {
         }else
             return null;
     }
+
+    public void deleteOneCommentById(Long commentId) {
+        commentRepository.deleteById(commentId);
+    }
 }
