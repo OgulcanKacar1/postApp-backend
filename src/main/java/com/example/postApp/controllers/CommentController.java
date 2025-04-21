@@ -2,6 +2,7 @@ package com.example.postApp.controllers;
 
 
 import com.example.postApp.entities.Comment;
+import com.example.postApp.requests.CommentCreateRequest;
 import com.example.postApp.services.CommentService;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +24,11 @@ public class CommentController {
                                         @RequestParam Optional<Long> postId) {
         return commentService.getAllCommentsWithParam(userId, postId);
 
+    }
+
+    @PostMapping
+    public Comment createOneComment(@RequestBody CommentCreateRequest request) {
+        return commentService.createOneComment(request);
     }
 
     @GetMapping("/{commentId}")
