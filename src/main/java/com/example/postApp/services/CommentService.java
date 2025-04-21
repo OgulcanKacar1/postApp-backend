@@ -4,6 +4,7 @@ import com.example.postApp.entities.Comment;
 import com.example.postApp.entities.Post;
 import com.example.postApp.entities.User;
 import com.example.postApp.repos.CommentRepository;
+import com.example.postApp.requests.CommendUpdateRequest;
 import com.example.postApp.requests.CommentCreateRequest;
 import org.springframework.stereotype.Service;
 
@@ -46,6 +47,17 @@ public class CommentService {
             comment.setUser(user);
             comment.setPost(post);
             return commentRepository.save(comment);
+        }else
+            return null;
+    }
+
+    public Comment updateOneCommentById(Long commentId, CommendUpdateRequest request) {
+        Optional<Comment> comment = commentRepository.findById(commentId);
+        if (comment.isPresent()) {
+            Comment toUpdate = comment.get();
+            toUpdate.setText(request.getText());
+
+            return commentRepository.save(toUpdate);
         }else
             return null;
     }
